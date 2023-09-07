@@ -39,14 +39,14 @@ const User = sequelize.define(
 
 User.hasMany(Image, {
   foreignKey: {
-    name: "user_id",
+    name: "userId",
     allowNull: false,
   },
 });
 
 Image.belongsTo(User, {
   foreignKey: {
-    name: "user_id",
+    name: "userId",
     allowNull: false,
   },
 });

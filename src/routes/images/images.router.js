@@ -1,26 +1,27 @@
 const express = require("express");
+const {
+  httpGetUserImages,
+  httpAddImage,
+  httpGetImage,
+  httpPutImage,
+  httpDeleteImage,
+} = require("./images.controller");
+const {
+  uploadImageMiddleware,
+  findUserImageMiddleware,
+} = require("../../middlewares/imageHandlers");
 
 const imagesRouter = express.Router();
 
 imagesRouter
   .route("/")
-  .get(function (req, res) {
-    res.status(404).json({ message: "Not implemented" });
-  })
-  .post(function (req, res) {
-    res.status(404).json({ message: "Not implemented" });
-  });
+  .get(findUserImageMiddleware, httpGetUserImages)
+  .post(uploadImageMiddleware, httpAddImage);
 
 imagesRouter
   .route("/:id")
-  .get(function (req, res) {
-    res.status(404).json({ message: "Not implemented" });
-  })
-  .put(function (req, res) {
-    res.status(404).json({ message: "Not implemented" });
-  })
-  .delete(function (req, res) {
-    res.status(404).json({ message: "Not implemented" });
-  });
+  .get(findUserImageMiddleware, httpGetImage)
+  .put(findUserImageMiddleware, uploadImageMiddleware, httpPutImage)
+  .delete(findUserImageMiddleware, httpDeleteImage);
 
 module.exports = imagesRouter;

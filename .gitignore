@@ -39,3 +39,5 @@ yarn-error.log
 # Cache and logs for the node package manager
 .pnpm-debug.log
 .pnpm
+
+*/uploads/*

@@ -10,8 +10,24 @@ const Image = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    fileName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    originalName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    mimeType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     location: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    size: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     meta: {
