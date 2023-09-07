@@ -1,4 +1,6 @@
 const fs = require("fs");
+const { DeleteObjectCommand } = require("@aws-sdk/client-s3");
+
 const s3Storage = require("../config/s3Store");
 
 // Improvements: make a common interface, forcing user to implement save and delete when a new cloud provider/storage option is added
@@ -11,23 +13,21 @@ const deleteLocalFileAsync = (filePath) => {
   });
 };
 
-const deleteS3FileAsync = (fileKey) => {
+const deleteS3FileAsync = async (fileKey) => {
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: fileKey,
   };
-
-  s3Storage.deleteObject(params, (error) => {
-    if (error) {
-      // Handle error, maybe log it or notify an admin
-      console.error(`Error deleting S3 object ${fileKey}:`, error);
-    }
-  });
+  try {
+    await s3Storage.send(new DeleteObjectCommand(params));
+  } catch (error) {
+    console.error(`Error deleting file ${fileKey}:`, error);
+  }
 };
 
 // Extend the deletion if other cloud providers are used
 const deleteImage = (location) => {
-  if (location.startsWith("https://s3.amazonaws.com")) {
+  if (location.includes("amazonaws.com")) {
     const fileKey = location.split("/").pop(); // Extract S3 key from URL
     deleteS3FileAsync(fileKey);
   } else {

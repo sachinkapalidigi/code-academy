@@ -1,17 +1,21 @@
 const uuid = require("uuid");
 const multer = require("multer");
+const multerS3 = require("multer-s3");
 const path = require("path");
 const fs = require("fs");
+
+const s3Storage = require("../config/s3Store");
 
 const getFileName = (fileName) => uuid.v4().toString() + "-" + fileName;
 
 const getS3Storage = () =>
   multerS3({
-    s3,
+    s3: s3Storage,
     bucket: process.env.AWS_BUCKET_NAME,
-    acl: "public-read", // TODO: change this if private access is necessary
+    // acl: "public-read", // change this if private access is necessary: use only if acl is allowed for buckets
     key: function (req, file, cb) {
       const fname = getFileName(file.originalname);
+      file.filename = fname;
       cb(null, fname);
     },
   });
