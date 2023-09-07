@@ -15,7 +15,7 @@ const imagesRouter = express.Router();
 
 imagesRouter
   .route("/")
-  .get(findUserImageMiddleware, httpGetUserImages)
+  .get(httpGetUserImages)
   .post(uploadImageMiddleware, httpAddImage);
 
 imagesRouter
