@@ -7,7 +7,7 @@ const REGISTER_RESPONSE = {
     status: "error",
     code: "INVALID_REQUEST",
     message:
-      "Invalid request. Please provide all required fields: username, email, password, full_name.",
+      "Invalid request. Please provide all required fields: username, password, fullName.",
   },
   USERNAME_EXISTS: {
     status: "error",
