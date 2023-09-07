@@ -16,6 +16,7 @@ A Node.js application using Express, MySQL, and Sequelize for a take-home assign
   - [Alternate: Using docker and docker compose](#alternate-using-docker-and-docker-compose)
     - [Prerequisites](#prerequisites)
     - [Running the Application with Docker Compose](#running-the-application-with-docker-compose)
+  - [API docs](#api-docs)
   - [Author](#author)
   - [License](#license)
 
@@ -146,6 +147,9 @@ docker-compose -f docker-compose.local.yml up --build
 ```bash
 docker-compose -f docker-compose.local.yml down
 ```
+
+## API docs
+Read Notion docs for available APIs [here](https://svrnotes.notion.site/Codeacademy-Cats-API-docs-2d67e3ad7c2b47279d632b25e6145286?pvs=4)
 
 ## Author
 
