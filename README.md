@@ -78,7 +78,7 @@ Before you begin, ensure you have Node.js and MySQL installed on your machine.
 - `age`: INTEGER, Not Null
 - `gender`: STRING, Not Null
 
-1. `image` table:
+2. `image` table:
 
 - `id`: BIGINT, Primary Key, Auto Increment
 - `file_name`: STRING, Not Null
